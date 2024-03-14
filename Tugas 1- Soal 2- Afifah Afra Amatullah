@@ -24,7 +24,7 @@ clrscr();
       WriteLn('rata-rata : ',rata:10:2);
       s:=1;
       for i:=1 to n do
-      s:=s+(sqr(x[i]-rata)/(n-1));
+      s:=s+(sqr(x[i]-rata)/(n));
       WriteLn('ragam : ',s:10:2);
       t:=sqrt(s);
       WriteLn('simpangan baku : ',t:10:2);
