@@ -1,0 +1,29 @@
+program Mencari_Volume_dan_Luas_Permukaan_Bola;
+uses Crt ;
+var 
+        nama : String;
+        nim : String [10];
+        volume, luas_permukaan,phi :Real;
+        jari_jari :Integer;
+begin
+clrscr();
+      Write('Nama  : ');
+      ReadLn(nama);
+      Write('NIM      :  ');
+      ReadLn(nim);
+      Writeln();
+      
+      WriteLn('Program Menghitung Volume dan Luas Permukaan Bola');
+      WriteLn('___________________________________________________________');
+      WriteLn();
+      
+      Write('Masukkan nilai jari-jari = ');
+      ReadLn(jari_jari);
+      
+      phi:=22/7;
+      volume:=3/4*phi*jari_jari*jari_jari;
+      luas_permukaan:= 4*phi*jari_jari*jari_jari;
+      
+      WriteLn('Volume Bola                       = ', volume:10:2);
+      WriteLn('Luas Permukaan Bola    =', luas_permukaan:10:2);
+end.
