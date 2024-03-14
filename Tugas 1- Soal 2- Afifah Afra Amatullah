@@ -1,0 +1,31 @@
+program MenghitungDataBebas;
+uses Crt ;
+var 
+      x: array [1..20] of integer;
+      jumlah, n , i : Integer;
+      s, t, ragam, rata : Real;
+begin
+clrscr();
+       Write('Masukkan jumlah bilangan : ');
+       ReadLn(n);
+       Writeln('Masukkan bilangan : ');
+       jumlah:=0;
+       for i := 1 to n do 
+       
+      begin 
+      Write('bilangan ke- ',i,' : ');
+      ReadLn(x[i]);
+      end;
+      
+      for i:=1 to n do
+      jumlah:= jumlah + x[i] ;
+      rata:=jumlah/n;
+      WriteLn('jumlah bilangan :', jumlah);
+      WriteLn('rata-rata : ',rata:10:2);
+      s:=1;
+      for i:=1 to n do
+      s:=s+(sqr(x[i]-rata)/(n-1));
+      WriteLn('ragam : ',s:10:2);
+      t:=sqrt(s);
+      WriteLn('simpangan baku : ',t:10:2);
+end.
