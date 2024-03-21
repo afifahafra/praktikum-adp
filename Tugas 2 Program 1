@@ -1,0 +1,97 @@
+program  TiketPesawat;
+uses crt;
+var nama, jenis_kelamin, tujuan, jenis_maskapai,x ,y:string;
+        umur,harga, z: Integer ;
+        total,total_harga, diskon:real;
+begin
+clrscr();
+    Writeln(' Pemesanan Layanan Penerbangan Bandara Internasional Minangkabau');
+    Writeln('=================================================================');
+    Writeln('Silahkan isi data diri anda');
+    Write('Nama            : ');
+    ReadLn(nama);
+    Write('Jenis kelamin   : ');
+    readln (jenis_kelamin) ;
+    Write('Umur            : ');
+    ReadLn(umur);
+    Writeln();
+   
+   Writeln('---------------------------------------------');
+    WriteLn('          Tujuan Keberangkatan           ');
+    WriteLn('---------------------------------------------');
+    WriteLn(' Kalimantan                                   ');
+    WriteLn(' Jakarta                                          ');
+    WriteLn(' Batam                                            ');
+    WriteLn('---------------------------------------------');
+    Write('Pilih Tujuan Keberangkatan Anda :');
+    readLn (x);
+    WriteLn();
+    
+    Writeln('---------------------------------------------');
+    Writeln('             Jenis Maskapai                ');
+    Writeln('---------------------------------------------');
+    Writeln(' First Class                                      ');
+    Writeln(' Bussines Class                             ');
+    Writeln (' Economy Class                            ');
+    WriteLn('---------------------------------------------');
+    Write('Pilih Jenis Maskapai Anda : ');
+    readln(y);
+    WriteLn();
+    
+    if      (x = 'kalimantan')  or (x= 'Kalimantan')then
+        begin
+        if (y = 'First Class') or (y='First class') or (y='first class') then  harga := 11000000  
+        else if ( y='Bussines Class' )  or (y='Bussines class') or (y='bussines class') then harga := 7250000   
+        else if (y ='Economy Class') or (y='Economy class') or ( y='economy class')then  harga := 2500000 
+        else Writeln ('Harap masukkan sesuai pilihan');
+        end;
+
+     if   (x = 'jakarta')  or (x= 'Jakarta') then
+         begin
+         if (y = 'First Class') or (y='First class') or (y='first class') then  harga := 7250000  
+         else if ( y='Bussines Class' )  or (y='Bussines class') or (y='bussines class') then harga := 4450000         
+         else if (y ='Economy Class') or (y='Economy class') or ( y='economy class') then  harga := 1790000 
+         else Writeln ('Harap masukkan sesuai pilihan');
+         end;
+
+     if    (x = 'batam') or (x='Batam') then
+        begin
+        if (y = 'First Class') or (y='First class') or (y='first class') then  harga := 4350000  
+        else if (y='Bussines Class' )  or (y='Bussines class') or (y='bussines class') then harga := 1950000   
+        else if (y ='Economy Class') or (y='Economy class') or ( y='economy class') then  harga := 980000 
+        else Writeln ('Harap masukkan sesuai pilihan');
+        end;
+     writeln ('Harga Rp. ', harga); 
+     Writeln();
+     Writeln ('Pembelian tiket lebih dari 3 kursi mendapatkan diskon 25%');
+     Write ('Jumlah tiket yang dipesan : ');
+     readln (z);
+     total:= harga*z;
+     writeln('Total harga normal        : Rp.',total:10:2);
+   
+     begin
+        if  (z<=3) then  diskon:=0
+        else if (z>3) then  diskon:= 0.25*total
+        end;
+     WriteLn('---------------------------------------------');
+      total_harga:=total-diskon;
+      Writeln ('Total harga penerbangan   : Rp. ',total_harga:10:2);
+      
+      WriteLn();
+      WriteLn();
+      Writeln ('=================================================');
+      Writeln ('  Struk Pemesanan Layanan Penerbangan dari Padang');
+      Writeln ('=================================================');
+      Writeln ('Nama              : ',nama);
+      Writeln ('Jenis Kelamin     : ',jenis_kelamin);
+      Writeln ('Umur              : ', umur);
+      Writeln ('-------------------------------------------------');
+      Writeln ('Kota Tujuan       : ',x);
+      Writeln('Jenis Penerbangan : ',y);
+      Writeln('Jumlah Tiket      : ',z);
+      Writeln('Harga normal      : Rp.', total:10:2);
+      Writeln ('Diskon            : Rp.',diskon:10:2);
+      Writeln('Total Harga       : Rp.',total_harga:10:2);
+      Writeln ('-------------------------------------------------');
+ readln();
+end.
