@@ -1,0 +1,90 @@
+print('Pemesanan Layanan Penerbangan Bandara Internasional Minangkabau')
+print('=======================================================')
+print('Silahkan isi data diri Anda')
+nama = input('Nama                   : ')
+jenis_kelamin = input('Jenis kelamin   : ')
+umur = int(input('Umur                   : '))
+print()
+
+print('---------------------------------------------------------------')
+print('                            Tujuan Keberangkatan           ')
+print('---------------------------------------------------------------')
+print('                                       Kalimantan ')
+print('                                          Jakarta     ')
+print('                                           Batam                ')
+print('---------------------------------------------------------------')
+x = input('Pilih Tujuan Keberangkatan Anda : ')
+print()
+
+print('---------------------------------------------------------------')
+print('                                      Jenis Maskapai                ')
+print('---------------------------------------------------------------')
+print('                                           First Class                                      ')
+print('                                       Bussines Class                             ')
+print('                                       Economy Class                            ')
+print('---------------------------------------------------------------')
+y = input('Pilih Jenis Maskapai Anda : ')
+print()
+
+harga = 0
+if x.lower() == 'kalimantan':
+    if y.lower() == 'first class':
+        harga = 11000000
+    elif y.lower() == 'bussines class':
+        harga = 7250000
+    elif y.lower() == 'economy class':
+        harga = 2500000
+    else:
+        print('Harap masukkan sesuai pilihan')
+
+elif x.lower() == 'jakarta':
+    if y.lower() == 'first class':
+        harga = 7250000
+    elif y.lower() == 'bussines class':
+        harga = 4450000
+    elif y.lower() == 'economy class':
+        harga = 1790000
+    else:
+        print('Harap masukkan sesuai pilihan')
+
+elif x.lower() == 'batam':
+    if y.lower() == 'first class':
+        harga = 4350000
+    elif y.lower() == 'bussines class':
+        harga = 1950000
+    elif y.lower() == 'economy class':
+        harga = 980000
+    else:
+        print('Harap masukkan sesuai pilihan')
+
+print('Harga Rp.', harga)
+print()
+print('Pembelian tiket lebih dari 3 kursi mendapatkan diskon 25%')
+z = int(input('Jumlah tiket yang dipesan : '))
+total = harga * z
+print('Total harga normal        : Rp.', format(total, '10.2f'))
+
+if z <= 3:
+    diskon = 0
+elif z > 3:
+    diskon = 0.25 * total
+
+print('---------------------------------------------------------------')
+total_harga = total - diskon
+print('Total harga penerbangan   : Rp.', format(total_harga, '10.2f'))
+print()
+print()
+print('=================================================')
+print('  Struk Pemesanan Layanan Penerbangan dari Padang ')
+print('=================================================')
+print('Nama                           : ', nama)
+print('Jenis Kelamin            : ', jenis_kelamin)
+print('Umur                            : ', umur)
+print('---------------------------------------------------------------------')
+print('Kota Tujuan                : ', x)
+print('Jenis Penerbangan  : ', y)
+print('Jumlah Tiket              : ', z)
+print('Harga normal             : Rp.', format(total, '10.2f'))
+print('Diskon                          : Rp.', format(diskon, '10.2f'))
+print('Total Harga                 : Rp.', format(total_harga, '10.2f'))
+print('---------------------------------------------------------------------')
