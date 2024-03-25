@@ -1,0 +1,34 @@
+program AlphabetPyramid;
+uses crt;
+var
+  j, k: Char;
+  i, n, spasi: Integer;
+  
+begin
+  clrscr();
+  Write('Masukkan Jumlah Huruf untuk Piramida Alphabet : ');
+  ReadLn(n);
+ 
+  if (n > 26) then
+     begin
+        WriteLn('Maaf, masukkan bilangan maksimum 26.');
+         break;
+     end;
+
+  spasi := n - 1;
+  for i := 1 to n do
+    begin
+        for j := 'A' to chr(65+ spasi)do
+        Write(' ');
+        for k := 'A' to chr(65+ i - 1)do
+        Write(k);
+        for j := ('A' + i - 2) downto 'A' do
+        Write(j);
+        for j := 'A' to Chr(65+ spasi) do
+        Write(' ');
+        WriteLn;
+        spasi := spasi - 1;
+        continue ;
+    end;
+  
+end.
