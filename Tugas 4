@@ -1,0 +1,33 @@
+program Perulangan;
+uses crt;
+var
+      count,countDOR, i : Integer;
+begin
+ clrscr();
+ WriteLn('————————————————————————————————————————————————');
+ WriteLn('|              Program Perulangan               |');
+ WriteLn('————————————————————————————————————————————————');
+ 
+ count:=1;
+ countDOR:=0;
+ for i:= 1 to 100 do
+     begin 
+     if (i mod 3 = 0) or (i mod 5 = 0) then
+     begin
+     Write('DOR  ');
+     countDOR:=countDOR+1;
+     end
+     
+     else 
+     Write(count:2,'   ');
+     
+     if i mod 10 = 0 then
+     WriteLn();
+     
+     count:=count+1;
+     end;
+  WriteLn('————————————————————————————————————————————————');
+  WriteLn();
+  WriteLn('Jumlah kata "DOR" yang muncul sebanyak = ', countDOR);
+  readln;
+end.
