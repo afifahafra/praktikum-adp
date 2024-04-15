@@ -1,0 +1,100 @@
+program DuaArray;
+uses crt;
+
+var 
+  A, B: array [0..9] of integer;
+  i, j, n: Integer;
+  ujiA, ujiB, ujiAB: boolean;
+
+begin 
+clrscr;
+Writeln (' —————————————————————————————————————————');
+Writeln ('|    Program Menginputkan 2 Buah Array    |');
+Writeln (' —————————————————————————————————————————');
+Writeln();
+
+  Write('Masukkan jumlah bilangan : ');
+  ReadLn(n);
+      
+  Writeln('Masukkan bilangan untuk array A');
+  for i := 1 to n do
+  begin
+    Write('Bilangan ke-', i , ': ');
+    Readln(A[i]);
+    While (A[i] < 0) or (A[i] > 9) do
+    begin
+      WriteLn('Harap masukkan bilangan antara 0 hingga 9.');
+      Write('Bilangan ke-', i , ': ');
+      Readln(A[i]);
+    end;
+  end;
+  
+  Writeln();
+  Writeln('Masukkan bilangan untuk array B');
+  for i := 1 to n do
+  begin
+    Write('Bilangan ke-', i , ': ');
+    Readln(B[i]);
+    While (B[i] < 0) or (B[i] > 9) do
+    begin
+      WriteLn('Harap masukkan bilangan antara 0 hingga 9.');
+      Write('Bilangan ke-', i , ': ');
+      Readln(B[i]);
+    end;
+  end;
+ 
+  Writeln();
+  Writeln ('—————————————————————————————————————————');
+  Write('Bilangan yang hanya ada di A: ');
+  for i := 1 to n  do
+  begin
+    ujiA := True;
+    for j := 1 to n  do
+    begin
+      if A[i] = B[j] then
+      begin
+        ujiA := false;
+        Break;
+      end;
+    end;
+    if ujiA then
+      Write(A[i], ', ');
+  end;
+  Writeln();
+  
+  Write('Bilangan yang hanya ada di B: ');
+  for i := 1 to n  do
+  begin
+    ujiB := true;
+    for j := 1 to n  do
+    begin
+      if B[i] = A[j] then
+      begin
+        ujiB := false;
+        Break;
+      end;
+    end;
+    if ujiB then
+      Write(B[i], ', ');
+  end;
+  Writeln();
+
+  Write('Bilangan yang ada di A dan B: ');
+  for i := 1 to n  do
+  begin
+    ujiAB := false;
+    for j := 1 to n  do
+    begin
+      if A[i] = B[j] then
+      begin
+        ujiAB := true;
+        Break;
+      end;
+    end;
+    if ujiAB then
+      Write(A[i], ', ');
+  end;
+  Writeln();
+
+  ReadLn();
+end.
