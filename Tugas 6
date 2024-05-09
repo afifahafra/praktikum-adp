@@ -1,0 +1,43 @@
+x = [["Beras", "Telur", "Minyak goreng", "Gula", "Tepung terigu", "Garam", "Kopi", "Teh", "Kecap manis", "Saus sambal"],
+    [ 100, 150, 100, 75, 100, 59, 78, 83, 68, 57],
+    [ 17000, 3500, 14500, 17500, 11000, 14500, 13000, 10000, 8000, 8000]]
+
+y = []
+for i in range(len(x[0])):
+    keuntungan = x[1][i] * x[2][i]
+    y.append(keuntungan)
+    
+keuntungan_tertinggi = y[0]
+keuntungan_terendah = y[0]
+indeks_a = 0
+indeks_b = 0
+total_keuntungan = 0
+
+for i in range(len(y)):
+    keuntungan = y[i]
+    if keuntungan > keuntungan_tertinggi:
+        keuntungan_tertinggi = keuntungan
+        indeks_a = i
+    if keuntungan < keuntungan_terendah:
+        keuntungan_terendah = keuntungan
+        indeks_b = i
+    total_keuntungan += keuntungan
+
+print("Nama  : Afifah Afra Amatullah")
+print("NIM   : 2310432021")
+print("Shift : IV")
+print("\n————————————————————————————————————————————————————————")
+print(" >>>  Nama Barang, Stok dan Harga Barang TOKO AFRA  <<<  ")
+print("————————————————————————————————————————————————————————")
+print("\n———————————————————————————————————————————————————")
+print("|  Nama Barang      |    Stok     |      Harga     |")
+print("————————————————————————————————————————————————————")
+for i in range(len(x[0])):
+    print(f"|  {x[0][i]:<16} |   {x[1][i]:<10}|    {x[2][i]:<10}  | ")
+
+print("————————————————————————————————————————————————————")    
+print("\nBarang dengan keuntungan tertinggi :", x[0][indeks_a])
+print ("Dengan harga barang                : Rp.",keuntungan_tertinggi)
+print("Barang dengan keuntungan terendah  :", x[0][indeks_b])
+print ("Dengan harga barang                : Rp.",keuntungan_terendah)
+print("Total Semua Keuntungan             : Rp.", total_keuntungan)
