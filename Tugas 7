@@ -1,0 +1,36 @@
+print ("Nama  : Afifah Afra Amatullah")
+print ("NIM   : 2310432021")
+print ("Shift : IV")
+print()
+print ("------------------------------------------------------")
+print (">>Program menentukan jarak dan kecepatan akhir benda<<")
+print ("------------------------------------------------------")
+
+n = int (input("Masukkan jumlah GLBB yang akan di cek : "))
+
+def input_glbb(n): 
+    glbb = []
+    for i in range (n):
+        print ("Data ke-",i+1," : ")
+        v0 = int(input("Masukkan kecepatan awal       : "))
+        a = int(input("Masukkan percepatan           : "))
+        t = int(input("Masukkan waktu yang digunakan : "))
+        glbb.append([v0, a, t])
+    return glbb
+
+def jarak_benda(v0, t , a):
+    return v0*t+(1/2)*a*t**2
+
+def kecepatan_akhir(v0, t, a):
+    return v0+a*t
+
+def tabel(glbb):
+    print ("--------------------------------------------------------------------------------------------------------")
+    print ("|   n   |  Kecepatan Awal (m/s) |  Percepatan (m/s^2)  |  Waktu (s) | Jarak (m) | Kecepatan Akhir (m/s) |")
+    print ("--------------------------------------------------------------------------------------------------------")
+    for i in range (n):
+        print (f"| {i+1:<6}| {glbb[i][0]:<21} | {glbb[i][1]:<20} | {glbb[i][2]:<10} | {jarak_benda(glbb[i][0],glbb[i][2],glbb[i][1]):<10}| {kecepatan_akhir(glbb[i][0],glbb[i][2],glbb[i][1]):<21} |")
+        print ("---------------------------------------------------------------------------------------------------------")
+glbb = input_glbb(n)
+hasil = tabel(glbb)
+print (hasil)
