@@ -12,9 +12,9 @@ def input_glbb(n):
     glbb = []
     for i in range (n):
         print ("Data ke-",i+1," : ")
-        v0 = int(input("Masukkan kecepatan awal       : "))
-        a = int(input("Masukkan percepatan           : "))
-        t = int(input("Masukkan waktu yang digunakan : "))
+        v0 = float(input("Masukkan kecepatan awal       : "))
+        a = float(input("Masukkan percepatan           : "))
+        t = float(input("Masukkan waktu yang digunakan : "))
         glbb.append([v0, a, t])
     return glbb
 
