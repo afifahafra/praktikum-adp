@@ -58,7 +58,7 @@ while True:
         tanggal  = input("Masukkan tanggal transaksi (dd-mm-yyyy)        : ")
         tipe = input("Masukkan tipe transaksi (pengeluaran/pemasukan): ")
         keterangan  = input("Masukkan deskripsi transaksi                   : ")
-        jumlah = input("Masukkan jumlah transaksi                      : Rp.")
+        jumlah = int(input("Masukkan jumlah transaksi                      : Rp."))
         tambah_keuangan(tanggal, tipe, keterangan, jumlah)
     elif pilihan == "2":
         tanggal = input ("Masukkan tanggal transaksi keuangan yang akan dihapus : ")
