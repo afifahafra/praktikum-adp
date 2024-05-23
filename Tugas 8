@@ -1,0 +1,78 @@
+print("Nama : Afifah Afra Amatullah")
+print("NIM  : 2310432021")
+print("Shift: IV")
+
+def tambah_keuangan(tanggal, tipe, keterangan, jumlah):
+    with open ("keuangan.txt", "a") as file:
+        file.write(f"{tanggal}, {tipe}, {keterangan}, {jumlah}\n")
+    print(f"{tanggal} : {tipe} {keterangan} sebesar Rp. {jumlah} telah ditambahkan")
+
+def hapus_keuangan(tanggal):
+    with open("keuangan.txt","r") as file:
+        lines = file.readlines()
+    with open("keuangan.txt","w") as file:
+        for line in lines:
+            if line.split(",")[0] != tanggal:
+                file.write(line)
+            else:
+                continue
+    print("Data keuangan Anda berhasil dihapus.")
+
+def edit_keuangan(tanggal, tipe, keterangan, jumlah):
+    with open("keuangan.txt","r") as file:
+        lines = file.readlines()
+    with open("keuangan.txt","w") as file:
+        for line in lines:
+            if line.split(",")[0] == tanggal:
+                file.write(f"{tanggal}, {tipe}, {keterangan}, {jumlah}\n")
+            else:
+                file.write(line)
+    print("Data keuangan Anda berhasil diubah")
+
+def tampilkan_keuangan():
+    with open ("keuangan.txt","r") as file:
+        data_keuangan = file.readlines()
+        if data_keuangan :
+            print("-----------------------")
+            print("\nData Keuangan Anda :")
+            print("-----------------------")
+            for data in data_keuangan:
+                tanggal, tipe, keterangan, jumlah = data.strip().split(", ")
+                print (f"{tanggal} : {tipe:<12} | {keterangan:<30} |  Rp.{jumlah:<12} |")
+        else:
+            print("Data keuangan Anda kosong.")
+
+while True:   
+    print("\n>>> Program Data Keuangan <<<")
+    print("=============================")
+    print("\nMenu:")
+    print("1. Tambah Data Keuangan")
+    print("2. Hapus Data Keuangan")
+    print("3. Edit Data Keuangan")
+    print("4. Tampilkan Semua Data Keuangan")
+    print("5. Keluar")
+
+    pilihan = input ("Pilih Menu (1/2/3/4/5) : ")
+
+    if pilihan == "1":
+        tanggal  = input("Masukkan tanggal transaksi (dd-mm-yyyy)        : ")
+        tipe = input("Masukkan tipe transaksi (pengeluaran/pemasukan): ")
+        keterangan  = input("Masukkan deskripsi transaksi                   : ")
+        jumlah = input("Masukkan jumlah transaksi                      : Rp.")
+        tambah_keuangan(tanggal, tipe, keterangan, jumlah)
+    elif pilihan == "2":
+        tanggal = input ("Masukkan tanggal transaksi keuangan yang akan dihapus : ")
+        hapus_keuangan(tanggal)
+    elif pilihan == "3":
+        tanggal = input("Masukkan tanggal transaksi yang akan diubah (dd-mm-yyyy)    :")
+        tipe = input("Masukkan tipe transaksi yang diubah (pengeluaran/pemasukan) : ")
+        keterangan = input("Masukkan deskripsi transaksi yang diubah                    : ")
+        jumlah  = int (input("Masukkan jumlah transaksi yang diubah                       : Rp. "))
+        edit_keuangan(tanggal, tipe, keterangan, jumlah)
+    elif pilihan == "4":
+        tampilkan_keuangan()
+    elif pilihan == "5":
+        print("Terimakasih telah menggunakan program ini.")
+        break
+    else:
+        print("Pilihan tidak valid. Silahkan pilih menu yang tersedia.")
