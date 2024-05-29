@@ -1,0 +1,46 @@
+import os
+import time
+from termcolor import colored, cprint
+
+os.system('cls')
+
+def lilin_kue():
+    print(" "*10, end=" ")
+    cprint(" *  *  *  *  * ","yellow") 
+    print(" "*10, end=" ")
+    cprint(" |  |  |  |  | ","red") 
+lilin_kue()
+
+def kue_lapisan1():
+    print(" "*10, end=" ")
+    cprint("~"*15, "magenta", "on_light_grey")
+    for i in range (2):
+        print(" "*10, end=" ")
+        cprint("               ", "grey", "on_light_cyan")
+    print(" "*10, end= " ")
+    cprint ("𐙚"*15,"magenta", "on_light_cyan")
+kue_lapisan1()
+
+def kue_lapisan2():
+    print(" "*7, end=" ")
+    cprint("~"*21, "magenta", "on_light_grey")
+    for i in range (3):
+        print(" "*7, end=" ")
+        cprint("                     ", "grey", "on_light_cyan")
+    print(" "*7, end= " ")
+    cprint ("𐙚"*21,"magenta", "on_light_cyan")
+kue_lapisan2()
+
+def kue_lapisan3():
+    print(" "*4, end=" ")
+    cprint("~"*27, "magenta", "on_light_grey")
+    for i in range (3):
+        print(" "*4, end=" ")
+        cprint("                           ", "grey", "on_light_cyan")
+    print(" "*4, end= " ")
+    cprint ("𐙚"*27,"magenta", "on_light_cyan")
+kue_lapisan3()
+
+time.sleep(2)
+print(" "*6, end= " ")
+cprint ("𐙚 ! HAPPY BIRTHDAY ! 𐙚", "magenta")
