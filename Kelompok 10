@@ -1,0 +1,183 @@
+import os
+import time
+from termcolor import colored
+
+def bersihkan_layar():
+    os.system('cls')
+
+def animasi_welcome(text):
+    for i in range(len(text) + 1):
+        bersihkan_layar()
+        print(colored(text[:i], 'black', 'on_white'))
+        time.sleep(0.1)
+
+def simpan_data(data, filename="data.txt"):
+    with open(filename, "w") as file:
+        for tugas in data:
+            file.write(f"{tugas['tugas']}|{tugas['done']}|{tugas['deadline']}\n")
+
+def muat_data(filename="data.txt"):
+    data = []
+    file = open(filename, "r")  
+    with file:
+        for line in file:
+            parts = line.strip().split("|")
+            if len(parts) == 3:
+                tugas, done, deadline = parts
+                data.append({"tugas": tugas, "done": done == 'True', "deadline": deadline})
+            else:
+                print(f"Baris tidak valid ditemukan dan diabaikan: {line.strip()}")
+    return data
+tugas_2 = muat_data()
+
+bersihkan_layar()
+
+def animasi_loading(pesan):
+    animasi = "|/-\\"
+    for i in range(10):
+        time.sleep(0.2)
+        print(f"\r{pesan} {animasi[i % len(animasi)]}", end="")
+    print("\r", end="")
+
+def tambah_tugas():
+    tugas = input(colored("📋 Masukkan Tugas                : ", "cyan"))
+    if tugas:
+        deadline = input(colored("📅 Masukkan Deadline (DD-MM-YYYY): ", "cyan"))
+        tugas_2.append({"tugas": tugas, "done": False, "deadline": deadline})
+        animasi_loading("Menambahkan tugas")
+        print(colored(f"Tugas '{tugas}' berhasil ditambahkan. ✅", "light_green"))
+        simpan_data(tugas_2)  
+    else:
+        print(colored("Tambahkan tugas Anda", "red"))
+
+def hapus_tugas(nomor_tugas):
+    if not tugas_2:
+        print(colored("Tidak ada tugas untuk dihapus ❌", "light_red"))
+        return
+    indeks_tugas = nomor_tugas - 1
+    if 0 <= indeks_tugas < len(tugas_2):
+        tugas_yang_tetap = []
+        for i in range(len(tugas_2)):
+            if i != indeks_tugas:
+                tugas_yang_tetap.append(tugas_2[i])
+        
+        animasi_loading("Menghapus tugas")
+        print(colored(f"Tugas '{tugas_2[indeks_tugas]['tugas']}' berhasil dihapus 🗑️", "light_green"))
+    
+        with open("data.txt", "w") as file:
+            for tugas in tugas_yang_tetap:
+                file.write(f"{tugas['tugas']}|{tugas['done']}|{tugas['deadline']}\n")
+        tugas_2[:] = tugas_yang_tetap
+    else:
+        print(colored("Nomor tugas tidak valid.", "red"))
+
+def tampilkan_tugas():
+    if tugas_2:
+        print(colored("📋 Daftar Tugas:", "cyan"))
+        for i in range(len(tugas_2)):
+            tugas = tugas_2[i]
+            status_tugas = "✅ Selesai" if tugas["done"] else "❌ Belum Selesai"
+            print(colored(f"{i + 1}. [{status_tugas}] {tugas['tugas']} - (Deadline: {tugas['deadline']})", "yellow"))
+    else:
+        print(colored("Tidak ada tugas dalam daftar.", "yellow"))
+
+def tandai_selesai():
+    if not tugas_2:
+        print(colored("Tidak ada tugas untuk diberi tanda selesai.", "yellow"))
+        return
+    tampilkan_tugas()
+    pilihan = input(colored("✅ Pilih nomor tugas yang sudah selesai (pisahkan dengan koma jika lebih dari satu): ", "blue"))
+    daftar_nomor_tugas = []
+    for nomor in pilihan.split(","):
+        nomor = nomor.strip()
+        if nomor:
+            indeks_tugas = int(nomor) - 1
+            if 0 <= indeks_tugas < len(tugas_2):
+                daftar_nomor_tugas.append(indeks_tugas)
+            else:
+                print(colored(f"Nomor tugas {nomor} tidak valid.", "red"))
+        else:
+            print(colored(f"'{nomor}' bukan nomor yang valid.", "red"))
+    for indeks_tugas in daftar_nomor_tugas:
+        tugas_2[indeks_tugas]['done'] = True
+        animasi_loading("Menandai tugas sebagai selesai")
+        print(colored(f"Tugas '{tugas_2[indeks_tugas]['tugas']}' telah ditandai sebagai selesai. ✅", "green"))
+    simpan_data(tugas_2)
+
+def edit_tugas():
+    if not tugas_2:
+        print(colored("Tidak ada tugas untuk diedit.", "yellow"))
+        return
+    tampilkan_tugas()
+    pilihan = input(colored("✏️ Pilih nomor tugas yang akan diedit: ", "blue")).strip()
+    if pilihan:
+        indeks_tugas = int(pilihan) - 1
+        if 0 <= indeks_tugas < len(tugas_2):
+            tugas_baru = input(colored("Masukkan tugas baru                 : ", "cyan"))
+            deadline_baru = input(colored("Masukkan deadline baru (DD-MM-YYYY) : ", "cyan"))
+            if tugas_baru and deadline_baru:
+                tugas_2[indeks_tugas]['tugas'] = tugas_baru
+                tugas_2[indeks_tugas]['deadline'] = deadline_baru
+                animasi_loading("Mengedit tugas")
+                print(colored(f"Tugas berhasil diubah menjadi '{tugas_baru}' dengan deadline '{deadline_baru}'. ✏️", "green"))
+                simpan_data(tugas_2)  
+            else:
+                print(colored("Tugas dan deadline tidak boleh kosong.", "red"))
+        else:
+            print(colored("Pilihan tidak valid.", "red"))
+    else:
+        print(colored("Masukkan nomor yang valid.", "red"))
+tugas_2 = muat_data()
+
+def animasi_selesai(text):
+    for i in range(len(text) + 1):
+        bersihkan_layar()
+        print(colored(text[:i], 'black', 'on_white'))
+        time.sleep(0.1)
+   
+welcome_text = "~ WELCOME TO SmartTask ~"
+welcome_text2 = "~~~~~~~~~~~~~~~~~~"
+animasi_welcome(welcome_text)
+time.sleep(1)
+animasi_welcome(welcome_text2)
+
+while True:
+    bersihkan_layar()
+    print(colored("\n📋 DAFTAR TUGAS :             ", "cyan", "on_dark_grey"))
+    print(colored("1. Tambah Tugas               ", "cyan", "on_light_grey"))
+    print(colored("2. Hapus Tugas                ", "cyan", "on_light_grey"))
+    print(colored("3. Tandai Selesai             ", "cyan", "on_light_grey"))
+    print(colored("4. Edit Tugas                 ", "cyan", "on_light_grey"))
+    print(colored("5. Lihat Daftar Tugas         ", "cyan", "on_light_grey"))
+    print(colored("6. Keluar                     ", "cyan", "on_light_grey"))
+    pilihan = input(colored("Pilih opsi : ", "cyan", "on_dark_grey"))
+
+    if pilihan == '1':
+        tambah_tugas()
+        input(colored("Tekan Enter untuk melanjutkan...", "yellow"))
+    elif pilihan == '2':
+        tampilkan_tugas()
+        nomor_tugas = int (input(colored("🗑️ Pilih nomor tugas yang akan dihapus :  ", "light_blue"))) 
+        hapus_tugas(nomor_tugas)
+        input(colored("Tekan Enter untuk melanjutkan...", "yellow"))
+    elif pilihan == '3':
+        tandai_selesai()
+        input(colored("Tekan Enter untuk melanjutkan...", "yellow"))
+    elif pilihan == '4':
+        edit_tugas()
+        input(colored("Tekan Enter untuk melanjutkan...", "yellow"))
+    elif pilihan == '5':
+        tampilkan_tugas()
+        input(colored("Tekan Enter untuk melanjutkan...", "yellow"))
+    elif pilihan == '6':           
+        teks_selesai = "~ TERIMAKASIH ~"
+        teks_selesai2 = "~Telah menggunakan SmartTask~"
+        teks_selesai3 = "~~~~~~~~~~~~~~~~~~"
+        animasi_selesai(teks_selesai)
+        animasi_selesai(teks_selesai2)
+        time.sleep(1)
+        animasi_selesai(teks_selesai3)
+        break
+    else:
+        print(colored("Pilihan tidak valid. Silakan coba lagi.", "red"))
+        input(colored("Tekan Enter untuk melanjutkan...", "yellow"))
