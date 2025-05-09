@@ -1,0 +1,58 @@
+def pemenang(pemain,bot):
+    if (pemain == "batu" and bot == "gunting") :
+         return "pemain"
+    elif (pemain=="gunting" and bot == "kertas"): 
+        return "pemain"
+    elif (pemain=="kertas" and bot=="batu"):
+        return "pemain"
+    elif (pemain == bot):
+        return "seri"
+    else:
+        return "bot"
+    
+import random
+
+print ("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print ("   Permainan Batu-Gunting-Kertas    ")
+print ("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+n=int(input("Mau bermain berapa ronde? : "))
+if n<=0 : 
+    print ("Harap masukkan jumlah ronde yang sesuai.")
+    exit()
+
+pilihan = ["batu","gunting","kertas"]
+poin_pemain = 0
+poin_bot = 0
+
+for ronde in range (0,n):
+    print (f"\nRonde {ronde+1}")
+    pemain=input("Masukkan pilihan (Batu/ Gunting/ Kertas) : ").lower()
+    if pemain not in pilihan :
+        print("Pilihan tidak sesuai. Ronde ini dilewatkan.")
+        continue
+    bot = random.choice(pilihan)
+    print(f"Bot memilih {bot}")
+    hasil = pemenang(pemain,bot)
+    if hasil  == "pemain":
+        print (f"{pemain} mengalahkan {bot}")
+        print ("Kamu memenangkan ronde ini!")
+        poin_pemain += 1
+    elif hasil == "bot":
+        print (f"{bot} mengalahankan {pemain}")
+        print("Bot memenangkan ronde ini.")
+        poin_bot += 1
+    else:
+        print ("Ronde ini seri.")
+
+print ("\n-------Pertandingan Selesai-------")
+print ("Hasil Akhir ")
+print (f"Total poin pemain : {poin_pemain} ")
+print (f"Total poin bot    : {poin_bot}")
+
+if poin_pemain>poin_bot:
+    print("Selamat! Kamu memenangkan pertandingan")
+elif poin_pemain<poin_bot:
+    print("Kamu kalah:(. Bot memenangkan pertandingan.")
+else:
+    print("Pertandingan ini seri.")
